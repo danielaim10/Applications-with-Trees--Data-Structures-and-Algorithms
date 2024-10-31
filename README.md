@@ -1,4 +1,4 @@
-# Assignment 2 - Munteanu Irina Daniela
+# Tree Structure - Munteanu Irina Daniela
 
 First, I initialized a tree structure using nodes that contain two variables: `value`, which stores the character of the node, and `level`, which indicates the level of the node in the tree. Importantly, our root is at level 0.
 
