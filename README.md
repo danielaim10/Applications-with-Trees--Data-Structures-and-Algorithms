@@ -1,67 +1,26 @@
-TEMA 2 - MUNTEANU IRINA DANIELA
+# Assignment 2 - Munteanu Irina Daniela
 
-Mai intai, am initilizat structura de tip node , adaugand pe langa nodurile 
-copii doua variabile , value si level, care retine caracterul pe care il are
-nodul, respectiv nivelul la care este in structura arborelui. Important este
-ca root-ul nostru este pe nivelul 0.
+First, I initialized a tree structure using nodes that contain two variables: `value`, which stores the character of the node, and `level`, which indicates the level of the node in the tree. Importantly, our root is at level 0.
 
-CERINTA 1:
-Incepem inserarea sufixelor pe care le-am format in main() prin adaugarea la
-finalul fiecarui sufix caracterul $, dupa aceea apelam functia insertSuffix. 
-Aceasta functie ia element cu element suffixul dat, ii afla indexul care este 
-aflat usor datorita codului ASCII (singura exceptie o face caracterul $ care 
-e pus pe indexul 0).Dupa aceea verificam daca acel copil deja exista, daca nu,
-inseram valoarea pe care o are copilul in nod, si trecem la urmatorul suffix 
-de inserat. In caz contrar, urmatorul nostru root va deveni copilul pentru a
-putea continua prelucrarea.In final. functia de afisare aplica parcurgerea 
-BFS a arborelui si afiseaza elemente in latime, tinand cont de cazul special,
-adica nodul care are valoare $.
+## Requirements
 
-CERINTA 2: 3 functii cu utilitate diferita:
--numara nodurile frunza din arbore:Functia retine intr-o variabila numita
-count.
-Intai verificam daca root este null, adica nu are niciun copil, va returna 0.
-Dacă cnull este încă 1 (adevărat) după buclă, înseamnă că toți copiii nodului 
-curent sunt nuli, deci nodul curent este o frunză. Se incrementează count cu 1
-pentru a număra această frunză.Pentru fiecare copil al nodului curent care nu 
-este nul, se apelează recursiv funcția count_frunza pe acel copil.Valoarea 
-returnată de apelul recursiv (numărul de noduri frunză din subarborele 
-copilului)se adaugă la variabila count.
+### Requirement 1
+We begin inserting suffixes in the `main()` function by appending the character `$` to the end of each suffix before calling the `insertSuffix` function. This function processes each suffix individually, determining its index using ASCII values (with `$` assigned to index 0). We check if the child already exists; if not, we insert the character value into the node and proceed to the next suffix. If it does exist, we make the child the new root to continue processing. Finally, the display function applies a BFS traversal of the tree to show the elements in breadth-first order, considering the special case of the node with value `$`.
 
--numara sufixele de dimensiune k:Funcția verifică dacă nodul curent (root) are
-valoarea $ (sfârșit de șir) și se află la nivelul k + 1.Dacă ambele condiții 
-sunt îndeplinite, înseamnă că am ajuns la un sufix de lungime k și 
-incrementează count cu 1 pentru a-l număra.Pentru fiecare copil al nodului 
-curent care nu este nul, se apelează recursiv funcția countK pe acel copil.
-Se incrementează variabila t pentru a ține evidența numărului de noduri 
-traversate în calea curentă.
-Valoarea returnată de apelul recursiv (numărul de sufixe de lungime k găsite 
-în subarborele copilului) se adaugă la count.După parcurgerea recursivă a 
-copiilor, se verifică dacă nodul curent este un $ (sfârșit de șir) și dacă t
-este egal cu k (numărul de noduri traversate).
-Dacă ambele condiții sunt îndeplinite, înseamnă că am găsit un sufix de 
-lungime k format prin concatenarea etichetelor nodurilor de pe calea curentă
-(excluzând nodul curent). Se incrementează count cu 1 pentru a-l număra.
+### Requirement 2
+Three functions with different utilities:
 
--valoarea maxima de descendenti din nodurile arborelui:Pentru fiecare copil 
-care nu este nul (root->children[i]), se incrementează current cu 1 pentru 
-a contoriza un descendent suplimentar.
-Verificam intre numarul de noduri curent si si numarul maxim determinat pana
-atunci care este mai mare, si numarul mai mare il punem in maxc.
+1. **Count Leaf Nodes**: 
+   This function uses a variable called `count` to keep track of leaf nodes. It first checks if the root is null (indicating no children) and returns 0. If `count` is still 1 after the loop, it means all children of the current node are null, indicating the current node is a leaf. We increment `count` by 1 to account for this leaf. For each non-null child of the current node, the function recursively calls `countLeaf` on that child. The value returned from the recursive call (the number of leaf nodes in the child’s subtree) is added to `count`.
 
-CERINTA 3:
-Refacem initializarea deoarece de aceasta data avem de citit 2 variabile N si M
-cat si 2 siruri de texte cu aplicatii diferite.
-Functia check verifica daca cele M siruri de caractere sunt sufixe ale 
-arborelui format din cele N cuvinte.
-Se verifică dacă copilul cu indexul index al nodului curent (root) există. Dacă
-nu există, înseamnă că sufixul nu există în arbore și se returnează 0.
-Se compară valoarea caracterului din suffix (la indexul curent i) cu valoarea
-copilului. Dacă nu coincid, înseamnă că sufixul nu se potrivește cu calea din 
-arbore și se returnează 0.Daca aceste operatii se fac trecem copilul ca root si
-continuam sa verificam copiii acestuia.
-Se verifică dacă există un copil $ la nodul curent. Dacă există, înseamnă că 
-sufixul se termină la un nod terminal ($), reprezentând un sufix complet, și se
-returnează 1.
-Dacă nu există un copil $, înseamnă că sufixul nu se termină la un nod terminal
-și nu este un sufix complet al șirului original, și se returnează 0.
+2. **Count Suffixes of Length k**:
+   This function checks if the current node (root) has the value `$` (indicating the end of a string) and is at level `k + 1`. If both conditions are satisfied, we increment `count` by 1 to register the suffix of length `k`. For each non-null child of the current node, the function recursively calls `countK` on that child. A variable `t` is incremented to track the number of nodes traversed in the current path. The value returned from the recursive call (the number of suffixes of length `k` found in the child’s subtree) is added to `count`. After traversing the children recursively, we check if the current node is `$` and if `t` equals `k`. If both conditions are met, it indicates that a suffix of length `k` has been found by concatenating the labels of nodes along the current path (excluding the current node).
+
+3. **Maximum Number of Descendants**:
+   For each non-null child (`root->children[i]`), we increment `current` by 1 to count an additional descendant. We then compare the current number of nodes with the maximum determined so far and update `maxCount` with the greater value.
+
+### Requirement 3
+We reinitialize since this time we need to read two variables `N` and `M`, as well as two strings with different applications. The `check` function verifies if the `M` strings are suffixes of the tree formed from the `N` words. It checks if the child at the current node (root) with the given index exists. If it does not exist, it means the suffix is not present in the tree, and it returns 0. We compare the character value from the suffix (at the current index `i`) with the child’s value. If they do not match, it indicates the suffix does not fit the path in the tree, and it returns 0. If these checks pass, we continue verifying the children of the current node. We check if there is a child `$` at the current node. If it exists, it means the suffix ends at a terminal node (`$`), representing a complete suffix, and it returns 1. If there is no child `$`, it means the suffix does not terminate at a terminal node and is not a complete suffix of the original string, and it returns 0.
+
+## Acknowledgments
+Thank you for your attention! I hope you find this project insightful. It has been an exciting challenge, and I've enjoyed the process of developing it.
